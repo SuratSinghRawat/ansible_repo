@@ -1,9 +1,9 @@
 pipeline{
-    agent 'Ansible_Node'
+    agent Ansible_Node
     stages{
         stage('checkout repo'){
             steps{
-                sh 'git clone https://github.com/SuratSinghRawat/ansible_repo.git'
+                git branch: 'main' , url: 'https://github.com/SuratSinghRawat/ansible_repo.git'
             }
         stage('run playbook')
         {
