@@ -8,7 +8,7 @@ pipeline{
         stage('run playbook')
         {
             steps{
-                ansiblePlaybook credentialsId: 'Ansible-Cred', installation: 'ansible', inventory: 'dev.inv', playbook: 'docker-plybk.yaml', vaultTmpPath: ''
+                ansiblePlaybook credentialsId: 'Ansible-Cred', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'docker-plybk.yaml', vaultTmpPath: ''
             }
         }
 
