@@ -1,0 +1,17 @@
+pipeline{
+    agent 'Ansible_Node'
+    stages{
+        stage('checkout repo'){
+            steps{
+                sh 'git clone https://github.com/SuratSinghRawat/ansible_repo.git'
+            }
+        stage('run playbook')
+        {
+            steps{
+                ansiblePlaybook credentialsId: 'Ansible-Cred', installation: 'ansible', inventory: 'dev.inv', playbook: 'docker-plybk.yaml', vaultTmpPath: ''
+            }
+        }
+
+        }
+    }
+}
