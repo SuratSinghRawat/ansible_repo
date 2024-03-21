@@ -1,0 +1,23 @@
+- name: deploy nginx on ec2
+  hosts: ansihost
+  become: true
+  become_user: root
+  # vars:
+  #   service_name: nginx
+  #   src_path: /home/ansiuser/ansible/index.html
+  #   dest_path: /usr/share/nginx/html/
+  vars_files:
+  - varibale.yaml
+  tasks: 
+  - name: install nginx
+    package: name="{{service_name}}" state=present
+  - name: start nginx
+    service:
+     name: "{{service_name}}"
+     state: started
+  - name: deploy html file
+    copy: src="{{src_path}}" dest="{{dest_path}}"
+    notify: restart "{{service_name}}"
+  handlers:     
+  - name: restart nginx
+    service: name="{{service_name}}" state=restarted
