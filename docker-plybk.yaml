@@ -1,6 +1,6 @@
 - name: Testing of other deployment 
   
-  hosts: ansihost
+  hosts: workernode
   tasks:
   - name: install docker and git
     package: name={{item}} state=present
