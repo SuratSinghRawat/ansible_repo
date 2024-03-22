@@ -1,5 +1,6 @@
 - name: Testing of other deployment 
-  
+  become: true
+  become_user: root
   hosts: workernode
   tasks:
   - name: install docker and git
