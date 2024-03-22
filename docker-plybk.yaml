@@ -3,7 +3,7 @@
   hosts: workernode
   tasks:
   - name: install docker and git
-    package: name={{item}} state=present
+    package: name={{item}} state=present  
     loop:
     - git
     - docker
@@ -11,7 +11,7 @@
     service: name=docker state=started
   - name: clone git repo
     git:
-    repo: https://github.com/Sonal0409/AnsibleDockerDemo.git
-    dest: /tmp/demo
+     repo: https://github.com/Sonal0409/AnsibleDockerDemo.git
+     dest: /tmp/demo
   - name: built docker image
     command: chdir=/tmp/demo docker build -t myimage:ansible .
